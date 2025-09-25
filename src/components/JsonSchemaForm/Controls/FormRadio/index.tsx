@@ -4,14 +4,16 @@ import type { FormControlProps, RadioFieldProps, Option } from '@/types/schema'
 
 const FormRadio = (props: FormControlProps<RadioFieldProps>) => {
   const { field, fieldProps } = props
+  const { options, ...radioProps } = fieldProps
   return (
     <RadioGroup
       onValueChange={field.onChange}
       value={field.value}
       className="flex flex-col"
+      {...radioProps}
     >
       {
-        fieldProps.options.map((option: Option) => {
+        options.map((option: Option) => {
           const { label, ...radioProps } = option
           return (
             <FormItem key={option.value} className="flex items-center gap-3">

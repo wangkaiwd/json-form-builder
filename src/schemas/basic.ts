@@ -9,11 +9,9 @@ export const basicSchema: JsonSchema = {
       label: 'Test',
       description: 'This is a test',
       formItemProps: {
-        name: 'radioKey',
-        label: 'Test',
         rules: {
           required: true,
-        },
+        }
       },
       fieldProps: {
         options: [
