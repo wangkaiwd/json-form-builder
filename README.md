@@ -172,8 +172,8 @@ interface FormItemProps {
 ```
 
 ## 完整示例
-
-### 食堂满意度调查问卷
+<details>
+<summary>食堂满意度调查问卷</summary>
 
 ```json
 {
@@ -518,6 +518,7 @@ interface FormItemProps {
   ]
 }
 ```
+</details>
 
 ## 其它资源
 
