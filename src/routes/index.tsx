@@ -7,7 +7,6 @@ import { jobApplicationSchema } from '@/schemas/jobApplication.ts'
 import { eventRegistrationSchema } from '@/schemas/eventRegistration.ts'
 import MonacoEditor from '@monaco-editor/react'
 import { useState } from 'react'
-import { TestForm } from '@/components/TestForm.tsx'
 import {
   Select,
   SelectContent,

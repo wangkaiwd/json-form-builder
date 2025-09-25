@@ -1,4 +1,6 @@
-export const productSurveySchema = {
+import type { JsonSchema } from '@/types/schema'
+
+export const productSurveySchema: JsonSchema = {
   defaultValues: {},
   nodes: [
     {

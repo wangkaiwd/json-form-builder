@@ -1,9 +1,13 @@
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form.tsx'
 import controlsManager from '@/components/JsonSchemaForm/registerControls.ts'
+import type { FormNode } from '@/types/schema'
 
-const FormItemRenderer = (props: any) => {
+const FormItemRenderer = (props: FormNode) => {
   const { type, name, label, description, fieldProps, formItemProps } = props
   const ControlComponent = controlsManager.getControl(type)
+  if(!ControlComponent) {
+    return null
+  }
   return (
     <FormField
       name={name}

@@ -1,4 +1,6 @@
-export const jobApplicationSchema = {
+import type { JsonSchema } from '@/types/schema'
+
+export const jobApplicationSchema: JsonSchema = {
   defaultValues: {},
   nodes: [
     {

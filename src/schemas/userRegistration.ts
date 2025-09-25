@@ -1,4 +1,6 @@
-export const userRegistrationSchema = {
+import type { JsonSchema } from '@/types/schema'
+
+export const userRegistrationSchema: JsonSchema = {
   defaultValues: {},
   nodes: [
     {

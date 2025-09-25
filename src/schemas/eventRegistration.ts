@@ -1,4 +1,6 @@
-export const eventRegistrationSchema = {
+import type { JsonSchema } from '@/types/schema'
+
+export const eventRegistrationSchema: JsonSchema = {
   defaultValues: {},
   nodes: [
     {

@@ -1,11 +1,7 @@
 import { Input } from '@/components/ui/input.tsx'
+import type { FormControlProps, InputFieldProps } from '@/types/schema'
 
-interface Props {
-  field: any
-  fieldProps: any
-}
-
-const FormInput = (props: Props) => {
+const FormInput = (props: FormControlProps<InputFieldProps>) => {
   const { field, fieldProps, ...restProps } = props
   return <Input placeholder="shadcn" {...restProps} {...field} {...fieldProps} />
 }

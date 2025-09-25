@@ -1,12 +1,8 @@
 import { FormControl, FormItem, FormLabel } from '@/components/ui/form.tsx'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group.tsx'
+import type { FormControlProps, RadioFieldProps, Option } from '@/types/schema'
 
-interface Props {
-  field: any
-  fieldProps: any
-}
-
-const FormRadio = (props: Props) => {
+const FormRadio = (props: FormControlProps<RadioFieldProps>) => {
   const { field, fieldProps } = props
   return (
     <RadioGroup
@@ -15,7 +11,7 @@ const FormRadio = (props: Props) => {
       className="flex flex-col"
     >
       {
-        fieldProps.options.map((option: any) => {
+        fieldProps.options.map((option: Option) => {
           const { label, ...radioProps } = option
           return (
             <FormItem key={option.value} className="flex items-center gap-3">

@@ -1,10 +1,12 @@
-class ControlsManager {
-  controls: {
-    list: any[],
-    map: Record<string, any>
-  } = { list: [], map: {} }
+import type { ControlType, ControlComponent, IControlsManager } from '@/types/schema'
 
-  register (key: string, control: any) {
+class ControlsManager implements IControlsManager {
+  private controls: {
+    list: ControlComponent[]
+    map: Record<ControlType, ControlComponent>
+  } = { list: [], map: {} as Record<ControlType, ControlComponent> }
+
+  register (key: ControlType, control: ControlComponent): void {
     const { list, map } = this.controls
     if (!map[key]) {
       list.push(control)
@@ -14,11 +16,11 @@ class ControlsManager {
     }
   }
 
-  getControl (key: string) {
+  getControl (key: ControlType): ControlComponent | undefined {
     return this.controls.map[key]
   }
 
-  getControls () {
+  getControls (): ControlComponent[] {
     return this.controls.list
   }
 }

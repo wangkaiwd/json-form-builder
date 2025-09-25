@@ -1,4 +1,6 @@
-export const basicSchema = {
+import type { JsonSchema } from '@/types/schema'
+
+export const basicSchema: JsonSchema = {
   defaultValues: {},
   nodes: [
     {

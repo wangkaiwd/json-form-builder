@@ -2,13 +2,11 @@ import { useForm } from 'react-hook-form'
 import { Form } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
 import FormItemRenderer from '@/components/JsonSchemaForm/FormItemRenderer.tsx'
+import type { JsonSchema } from '@/types/schema'
 
 interface JsonSchemaFormProps {
-  schema?: {
-    defaultValues: any,
-    nodes: any[]
-  },
-  onSubmit: (data: any) => void
+  schema?: JsonSchema
+  onSubmit: (data: Record<string, any>) => void
 }
 
 const JsonSchemaForm = (props: JsonSchemaFormProps) => {
