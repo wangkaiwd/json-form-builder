@@ -21,6 +21,7 @@ export const Route = createFileRoute('/')({
   component: App,
 })
 
+// todo: 优化代码
 const schemas = {
   basic: { name: '基础示例', schema: basicSchema },
   userRegistration: { name: '用户注册表单', schema: userRegistrationSchema },
@@ -38,6 +39,10 @@ function App () {
     setSelectedKey(key)
     const newSchema = schemas[key].schema
     setCurrentSchema(newSchema)
+  }
+
+  const onSubmit = (data: any) => {
+    console.log('data', data)
   }
 
   return (
@@ -126,8 +131,7 @@ function App () {
             </div>
             <div className="p-6 h-[600px] overflow-y-auto">
               <div className="max-w-md mx-auto">
-                {/* <JsonSchemaForm schema={currentSchema}/> */}
-                <TestForm />
+                <JsonSchemaForm schema={currentSchema} onSubmit={onSubmit}  />
               </div>
             </div>
           </div>

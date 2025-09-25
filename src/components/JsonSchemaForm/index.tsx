@@ -7,16 +7,13 @@ interface JsonSchemaFormProps {
   schema?: {
     defaultValues: any,
     nodes: any[]
-  }
+  },
+  onSubmit: (data: any) => void
 }
 
 const JsonSchemaForm = (props: JsonSchemaFormProps) => {
-  const { schema } = props
-  const form = useForm({})
-
-  function onSubmit (data: any) {
-    console.log('data', data)
-  }
+  const { schema, onSubmit } = props
+  const form = useForm()
 
   const renderFormItems = () => {
     return schema?.nodes.map(node => {
