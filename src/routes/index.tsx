@@ -32,7 +32,7 @@ const schemas = {
 function App () {
   const [selectedKey, setSelectedKey] = useState<keyof typeof schemas>('userRegistration')
   const [currentSchema, setCurrentSchema] = useState(schemas[selectedKey].schema)
-  
+
   const handleSchemaChange = (schemaKey: string) => {
     const key = schemaKey as keyof typeof schemas
     setSelectedKey(key)
@@ -56,7 +56,7 @@ function App () {
             可视化构建和预览动态表单
           </p>
         </div>
-        
+
         {/* Schema 选择器 */}
         <div className="mb-8 flex justify-center">
           <div className="bg-white rounded-lg shadow-sm border p-4 w-full max-w-md">
@@ -65,7 +65,7 @@ function App () {
             </label>
             <Select value={selectedKey} onValueChange={handleSchemaChange}>
               <SelectTrigger className="w-full">
-                <SelectValue placeholder="请选择表单示例" />
+                <SelectValue placeholder="请选择表单示例"/>
               </SelectTrigger>
               <SelectContent>
                 {Object.entries(schemas).map(([key, { name }]) => (
@@ -83,7 +83,7 @@ function App () {
           <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
             <div className="border-b bg-slate-50 px-6 py-4">
               <h2 className="text-lg font-semibold text-slate-800 flex items-center">
-                <Code2 className="w-5 h-5 mr-2 text-slate-600" />
+                <Code2 className="w-5 h-5 mr-2 text-slate-600"/>
                 JSON Schema 配置
               </h2>
               <p className="text-sm text-slate-600 mt-1">
@@ -96,10 +96,10 @@ function App () {
                 language="json"
                 value={JSON.stringify(currentSchema, null, 2)}
                 onChange={(code) => {
-                  if(code) {
+                  if (code) {
                     setCurrentSchema(JSON.parse(code))
-                  }else {
-                    setCurrentSchema({ defaultValues: {}, nodes: [] })                    
+                  } else {
+                    setCurrentSchema({ defaultValues: {}, nodes: [] })
                   }
                 }}
                 options={{
@@ -121,7 +121,7 @@ function App () {
           <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
             <div className="border-b bg-slate-50 px-6 py-4">
               <h2 className="text-lg font-semibold text-slate-800 flex items-center">
-                <FileText className="w-5 h-5 mr-2 text-slate-600" />
+                <FileText className="w-5 h-5 mr-2 text-slate-600"/>
                 表单预览
               </h2>
               <p className="text-sm text-slate-600 mt-1">
@@ -130,7 +130,7 @@ function App () {
             </div>
             <div className="p-6 h-[600px] overflow-y-auto">
               <div className="max-w-md mx-auto">
-                <JsonSchemaForm schema={currentSchema} onSubmit={onSubmit}  />
+                <JsonSchemaForm schema={currentSchema} onSubmit={onSubmit}/>
               </div>
             </div>
           </div>
