@@ -9,8 +9,6 @@ export const jobApplicationSchema: JsonSchema = {
       label: '姓名',
       description: '请输入您的真实姓名',
       formItemProps: {
-        name: 'fullName',
-        label: '姓名',
         rules: {
           required: true,
         },
@@ -26,8 +24,6 @@ export const jobApplicationSchema: JsonSchema = {
       label: '邮箱',
       description: '请输入您的联系邮箱',
       formItemProps: {
-        name: 'email',
-        label: '邮箱',
         rules: {
           required: true,
         },
@@ -43,8 +39,6 @@ export const jobApplicationSchema: JsonSchema = {
       label: '手机号码',
       description: '请输入您的手机号码',
       formItemProps: {
-        name: 'phone',
-        label: '手机号码',
         rules: {
           required: true,
         },
@@ -60,8 +54,6 @@ export const jobApplicationSchema: JsonSchema = {
       label: '应聘职位',
       description: '您要应聘的职位',
       formItemProps: {
-        name: 'position',
-        label: '应聘职位',
         rules: {
           required: true,
         },
@@ -77,8 +69,6 @@ export const jobApplicationSchema: JsonSchema = {
       label: '工作经验',
       description: '您的工作经验年限',
       formItemProps: {
-        name: 'experience',
-        label: '工作经验',
         rules: {
           required: true,
         },
@@ -114,8 +104,6 @@ export const jobApplicationSchema: JsonSchema = {
       label: '学历',
       description: '您的最高学历',
       formItemProps: {
-        name: 'education',
-        label: '学历',
         rules: {
           required: true,
         },
@@ -151,8 +139,6 @@ export const jobApplicationSchema: JsonSchema = {
       label: '工作类型偏好',
       description: '您偏好的工作类型',
       formItemProps: {
-        name: 'workType',
-        label: '工作类型偏好',
         rules: {
           required: true,
         },
@@ -184,8 +170,6 @@ export const jobApplicationSchema: JsonSchema = {
       label: '期望薪资',
       description: '您的期望薪资（月薪，单位：元）',
       formItemProps: {
-        name: 'expectedSalary',
-        label: '期望薪资',
         rules: {
           required: false,
         },

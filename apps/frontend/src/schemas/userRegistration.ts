@@ -9,8 +9,6 @@ export const userRegistrationSchema: JsonSchema = {
       label: '用户名',
       description: '请输入您的用户名',
       formItemProps: {
-        name: 'username',
-        label: '用户名',
         rules: {
           required: true,
         },
@@ -26,8 +24,6 @@ export const userRegistrationSchema: JsonSchema = {
       label: '邮箱地址',
       description: '请输入您的邮箱地址',
       formItemProps: {
-        name: 'email',
-        label: '邮箱地址',
         rules: {
           required: true,
         },
@@ -43,8 +39,6 @@ export const userRegistrationSchema: JsonSchema = {
       label: '密码',
       description: '请设置您的密码',
       formItemProps: {
-        name: 'password',
-        label: '密码',
         rules: {
           required: true,
         },
@@ -60,8 +54,6 @@ export const userRegistrationSchema: JsonSchema = {
       label: '性别',
       description: '请选择您的性别',
       formItemProps: {
-        name: 'gender',
-        label: '性别',
         rules: {
           required: true,
         },
@@ -89,8 +81,6 @@ export const userRegistrationSchema: JsonSchema = {
       label: '账户类型',
       description: '请选择您的账户类型',
       formItemProps: {
-        name: 'accountType',
-        label: '账户类型',
         rules: {
           required: true,
         },

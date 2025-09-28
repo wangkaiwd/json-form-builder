@@ -9,8 +9,6 @@ export const eventRegistrationSchema: JsonSchema = {
       label: '参与者姓名',
       description: '请输入参与者的真实姓名',
       formItemProps: {
-        name: 'participantName',
-        label: '参与者姓名',
         rules: {
           required: true,
         },
@@ -26,8 +24,6 @@ export const eventRegistrationSchema: JsonSchema = {
       label: '邮箱地址',
       description: '用于接收活动通知',
       formItemProps: {
-        name: 'email',
-        label: '邮箱地址',
         rules: {
           required: true,
         },
@@ -43,8 +39,6 @@ export const eventRegistrationSchema: JsonSchema = {
       label: '公司/组织',
       description: '您所在的公司或组织',
       formItemProps: {
-        name: 'company',
-        label: '公司/组织',
         rules: {
           required: false,
         },
@@ -60,8 +54,6 @@ export const eventRegistrationSchema: JsonSchema = {
       label: '票种选择',
       description: '请选择您要购买的票种',
       formItemProps: {
-        name: 'ticketType',
-        label: '票种选择',
         rules: {
           required: true,
         },
@@ -93,8 +85,6 @@ export const eventRegistrationSchema: JsonSchema = {
       label: '参会方式',
       description: '您计划如何参加此次活动？',
       formItemProps: {
-        name: 'attendanceType',
-        label: '参会方式',
         rules: {
           required: true,
         },
@@ -122,8 +112,6 @@ export const eventRegistrationSchema: JsonSchema = {
       label: '饮食要求',
       description: '您是否有特殊的饮食要求？',
       formItemProps: {
-        name: 'dietaryRestrictions',
-        label: '饮食要求',
         rules: {
           required: true,
         },
@@ -155,8 +143,6 @@ export const eventRegistrationSchema: JsonSchema = {
       label: '特殊需求',
       description: '如有其他特殊需求，请在此说明',
       formItemProps: {
-        name: 'specialRequests',
-        label: '特殊需求',
         rules: {
           required: false,
         },
