@@ -1,0 +1,13 @@
+{
+  "name": "json-form-builder",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+		"dev:fe": "pnpm -F './apps/frontend' dev",
+		"dev:be": "pnpm -F './apps/backend' start:dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.8.0"
+}
