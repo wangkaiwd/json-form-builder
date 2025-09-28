@@ -21,7 +21,6 @@
 - **React Hook Form** - 表单管理
 - **Tailwind CSS** - 样式框架
 - **Shadcn/ui** - UI 组件库
-- **Zod** - 数据验证
 
 ### Backend
 - **NestJS** - Node.js 框架
