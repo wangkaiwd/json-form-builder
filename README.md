@@ -134,10 +134,6 @@ Content-Type: application/json
 }
 ```
 
-## 📄 许可证
-
-[ISC License](LICENSE)
-
 ## 🔗 相关链接
 
 - [React Hook Form 文档](https://react-hook-form.com/)
