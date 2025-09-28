@@ -1,6 +1,7 @@
 node_modules
 .DS_Store
 dist
+build
 dist-ssr
 *.local
 count.txt
@@ -8,3 +9,12 @@ count.txt
 .nitro
 .tanstack
 .idea
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
