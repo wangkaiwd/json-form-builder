@@ -14,7 +14,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select.tsx'
-import { Code2, FileText } from 'lucide-react'
+import { Button } from '@/components/ui/button.tsx'
+import { Code2, FileText, Eye, Edit3 } from 'lucide-react'
 
 export const Route = createFileRoute('/')({
   component: App,
@@ -32,6 +33,7 @@ const schemas = {
 function App () {
   const [selectedKey, setSelectedKey] = useState<keyof typeof schemas>('userRegistration')
   const [currentSchema, setCurrentSchema] = useState(schemas[selectedKey].schema)
+  const [isSurveyMode, setIsSurveyMode] = useState(false)
 
   const handleSchemaChange = (schemaKey: string) => {
     const key = schemaKey as keyof typeof schemas
@@ -55,86 +57,133 @@ function App () {
           <p className="text-slate-600 text-lg">
             可视化构建和预览动态表单
           </p>
-        </div>
-
-        {/* Schema 选择器 */}
-        <div className="mb-8 flex justify-center">
-          <div className="bg-white rounded-lg shadow-sm border p-4 w-full max-w-md">
-            <label className="block text-sm font-medium text-slate-700 mb-2">
-              选择表单示例
-            </label>
-            <Select value={selectedKey} onValueChange={handleSchemaChange}>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="请选择表单示例"/>
-              </SelectTrigger>
-              <SelectContent>
-                {Object.entries(schemas).map(([key, { name }]) => (
-                  <SelectItem key={key} value={key}>
-                    {name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+          
+          {/* 模式切换按钮 */}
+          <div className="flex justify-center gap-4 mt-6">
+            {!isSurveyMode ? (
+              <Button 
+                onClick={() => setIsSurveyMode(true)}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2"
+              >
+                <Eye className="w-4 h-4 mr-2" />
+                生成问卷
+              </Button>
+            ) : (
+              <Button 
+                onClick={() => setIsSurveyMode(false)}
+                variant="outline"
+                className="border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-2"
+              >
+                <Edit3 className="w-4 h-4 mr-2" />
+                返回编辑
+              </Button>
+            )}
           </div>
         </div>
 
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
-          {/* JSON 编辑器 */}
-          <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
-            <div className="border-b bg-slate-50 px-6 py-4">
-              <h2 className="text-lg font-semibold text-slate-800 flex items-center">
-                <Code2 className="w-5 h-5 mr-2 text-slate-600"/>
-                JSON Schema 配置
-              </h2>
-              <p className="text-sm text-slate-600 mt-1">
-                编辑表单的JSON配置文件
-              </p>
-            </div>
-            <div className="h-[600px]">
-              <MonacoEditor
-                height="100%"
-                language="json"
-                value={JSON.stringify(currentSchema, null, 2)}
-                onChange={(code) => {
-                  if (code) {
-                    setCurrentSchema(JSON.parse(code))
-                  } else {
-                    setCurrentSchema({ defaultValues: {}, nodes: [] })
-                  }
-                }}
-                options={{
-                  minimap: { enabled: false },
-                  fontSize: 13,
-                  lineNumbers: 'on',
-                  roundedSelection: false,
-                  scrollBeyondLastLine: false,
-                  automaticLayout: true,
-                  theme: 'vs-light',
-                  padding: { top: 16, bottom: 16 },
-                  fontFamily: 'JetBrains Mono, Monaco, "Courier New", monospace',
-                }}
-              />
+        {/* Schema 选择器 - 只在编辑模式下显示 */}
+        {!isSurveyMode && (
+          <div className="mb-8 flex justify-center">
+            <div className="bg-white rounded-lg shadow-sm border p-4 w-full max-w-md">
+              <label className="block text-sm font-medium text-slate-700 mb-2">
+                选择表单示例
+              </label>
+              <Select value={selectedKey} onValueChange={handleSchemaChange}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="请选择表单示例"/>
+                </SelectTrigger>
+                <SelectContent>
+                  {Object.entries(schemas).map(([key, { name }]) => (
+                    <SelectItem key={key} value={key}>
+                      {name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
           </div>
+        )}
 
-          {/* 表单预览 */}
-          <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
-            <div className="border-b bg-slate-50 px-6 py-4">
-              <h2 className="text-lg font-semibold text-slate-800 flex items-center">
-                <FileText className="w-5 h-5 mr-2 text-slate-600"/>
-                表单预览
-              </h2>
-              <p className="text-sm text-slate-600 mt-1">
-                实时预览生成的表单
-              </p>
-            </div>
-            <div className="p-6 h-[600px] overflow-y-auto">
-              <div className="max-w-md mx-auto">
-                <JsonSchemaForm schema={currentSchema} onSubmit={onSubmit}/>
+        {isSurveyMode ? (
+          /* 问卷模式 - 只显示表单 */
+          <div className="flex justify-center">
+            <div className="bg-white rounded-xl shadow-sm border overflow-hidden w-full max-w-2xl">
+              <div className="border-b bg-slate-50 px-6 py-4 text-center">
+                <h2 className="text-xl font-semibold text-slate-800 flex items-center justify-center">
+                  <FileText className="w-5 h-5 mr-2 text-slate-600"/>
+                  {schemas[selectedKey].name}
+                </h2>
+                <p className="text-sm text-slate-600 mt-1">
+                  请填写以下信息
+                </p>
+              </div>
+              <div className="p-8">
+                <div className="max-w-lg mx-auto">
+                  <JsonSchemaForm schema={currentSchema} onSubmit={onSubmit}/>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        ) : (
+          /* 编辑模式 - 显示编辑器和表单预览 */
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+            {/* JSON 编辑器 */}
+            <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
+              <div className="border-b bg-slate-50 px-6 py-4">
+                <h2 className="text-lg font-semibold text-slate-800 flex items-center">
+                  <Code2 className="w-5 h-5 mr-2 text-slate-600"/>
+                  JSON Schema 配置
+                </h2>
+                <p className="text-sm text-slate-600 mt-1">
+                  编辑表单的JSON配置文件
+                </p>
+              </div>
+              <div className="h-[600px]">
+                <MonacoEditor
+                  height="100%"
+                  language="json"
+                  value={JSON.stringify(currentSchema, null, 2)}
+                  onChange={(code) => {
+                    if (code) {
+                      setCurrentSchema(JSON.parse(code))
+                    } else {
+                      setCurrentSchema({ defaultValues: {}, nodes: [] })
+                    }
+                  }}
+                  options={{
+                    minimap: { enabled: false },
+                    fontSize: 13,
+                    lineNumbers: 'on',
+                    roundedSelection: false,
+                    scrollBeyondLastLine: false,
+                    automaticLayout: true,
+                    theme: 'vs-light',
+                    padding: { top: 16, bottom: 16 },
+                    fontFamily: 'JetBrains Mono, Monaco, "Courier New", monospace',
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* 表单预览 */}
+            <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
+              <div className="border-b bg-slate-50 px-6 py-4">
+                <h2 className="text-lg font-semibold text-slate-800 flex items-center">
+                  <FileText className="w-5 h-5 mr-2 text-slate-600"/>
+                  表单预览
+                </h2>
+                <p className="text-sm text-slate-600 mt-1">
+                  实时预览生成的表单
+                </p>
+              </div>
+              <div className="p-6 h-[600px] overflow-y-auto">
+                <div className="max-w-md mx-auto">
+                  <JsonSchemaForm schema={currentSchema} onSubmit={onSubmit}/>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
